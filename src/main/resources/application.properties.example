@@ -1,0 +1,25 @@
+# Server Port
+server.port=8080
+
+# Student DB
+spring.datasource.student.url=jdbc:postgresql://localhost:5433/student_db
+spring.datasource.student.username=lauraakberdi
+spring.datasource.student.password=
+
+# Course DB
+spring.datasource.course.url=jdbc:postgresql://localhost:5433/course_db
+spring.datasource.course.username=lauraakberdi
+spring.datasource.course.password=
+
+# Grade DB
+spring.datasource.grade.url=jdbc:postgresql://localhost:5433/grade_db
+spring.datasource.grade.username=lauraakberdi
+spring.datasource.grade.password=
+
+# Hibernate / DDL Auto
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+
+# H2 Console
+spring.h2.console.enabled=true
+spring.h2.console.path=/h2-console
