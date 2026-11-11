@@ -1,41 +1,23 @@
 package com.example.university.student.controller;
 
-import com.example.university.student.entity.Student;
-import com.example.university.student.service.StudentService;
-import jakarta.validation.Valid;
-import org.springframework.http.HttpStatus;
+import com.example.university.student.dto.TranscriptResponse;
+import com.example.university.student.service.TranscriptService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/students")
 public class StudentController {
-    private final StudentService service;
 
-    public StudentController(StudentService service) {
-        this.service = service;
-    }
+    @Autowired
+    private TranscriptService transcriptService;
 
-    @GetMapping
-    public List<Student> list() {
-        return service.findAll();
-    }
+    // Бұрынғы басқа методтарың осында тұра береді...
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public Student create(@Valid @RequestBody Student s) {
-        return service.create(s);
-    }
-
-    @PutMapping("/{id}")
-    public Student update(@PathVariable Long id, @Valid @RequestBody Student s) {
-        return service.update(id, s);
-    }
-
-    @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Long id) {
-        service.delete(id);
+    @GetMapping("/{id}/transcript")
+    public ResponseEntity<TranscriptResponse> getTranscript(@PathVariable Long id) {
+        TranscriptResponse transcript = transcriptService.getStudentTranscript(id);
+        return ResponseEntity.ok(transcript);
     }
 }
